@@ -16,7 +16,7 @@ def get_word(first_letter=None):
    try:
       # missing the randomization of the index in the list,
       # depending on its length
-      word_list = list(WordData.word_dict[first_letter])
+      word_list = list(WordData.word_dict[first_letter.lower()])
       return word_list[random.randrange(0, len(word_list))]
    except (KeyError, IndexError, ValueError):
       # I may want to raise a warning with the error in here
