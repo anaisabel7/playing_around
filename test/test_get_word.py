@@ -19,6 +19,16 @@ class TestGetWord(TestCase):
       self.assertEqual(tested_word, 'test word')
 
    @patch('playing_around.get_word.WordData')
+   def test_get_word_works_with_upper_case_letters(self, MockWordData):
+      MockWordData.default_word = 'default word'
+      MockWordData.word_dict = OriginalWordData.word_dict
+      MockWordData.word_dict['t'] = {
+         'test word': 'definition of the test word'
+      }
+      tested_word = get_word('T')
+      self.assertEqual(tested_word, 'test word')
+
+   @patch('playing_around.get_word.WordData')
    def test_get_word_gets_default_word_if_none_with_letter(self, MockWordData):
       MockWordData.default_word = 'default word'
       MockWordData.word_dict = OriginalWordData.word_dict
